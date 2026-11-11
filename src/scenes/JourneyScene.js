@@ -63,6 +63,7 @@ export default class JourneyScene extends Phaser.Scene {
     this.quiz = new Quiz(this, {
       onAnswer: (checkpointId, optionId) => this.answerCheckpoint(checkpointId, optionId),
       onStartInteraction: () => this.startInteraction(),
+      onReviewPhoto: () => this.reviewPhoto(),
       onContinue: () => this.continueJourney(),
       onFinish: () => this.finishJourney(),
     });
@@ -172,6 +173,11 @@ export default class JourneyScene extends Phaser.Scene {
     if (!this.journey.revealPhoto()) return;
     const previous = memory.revealType === 'album' ? memories.slice(0, this.checkpoints.completed) : [];
     this.photo.open(memory, previous);
+  }
+
+  reviewPhoto() {
+    if (this.paused || this.journey.state !== JourneyState.STOPPED) return;
+    this.photo.open(this.checkpoints.current);
   }
 
   unlockPhoto(id) {

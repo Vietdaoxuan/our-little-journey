@@ -162,6 +162,12 @@ body {
   gap: 6px;
 }
 
+.quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .quiz-options button {
   padding-inline: 6px;
   box-shadow: none;

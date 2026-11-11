@@ -5,7 +5,7 @@ const dateFormat = new Intl.DateTimeFormat('vi-VN', {
 });
 
 export default class Quiz {
-  constructor(scene, { onAnswer, onStartInteraction, onContinue, onFinish }) {
+  constructor(scene, { onAnswer, onStartInteraction, onReviewPhoto, onContinue, onFinish }) {
     this.card = document.createElement('section');
     this.card.className = 'checkpoint-card';
     this.card.setAttribute('aria-label', 'Quiz kỷ niệm');
@@ -35,7 +35,14 @@ export default class Quiz {
     this.next = document.createElement('button');
     this.next.type = 'button';
     this.next.addEventListener('click', () => this.action?.());
-    this.card.append(this.title, this.details, this.question, this.options, this.feedback, this.hearts, this.next);
+    this.review = document.createElement('button');
+    this.review.type = 'button';
+    this.review.textContent = 'Xem ảnh kỷ niệm';
+    this.review.addEventListener('click', onReviewPhoto);
+    const actions = document.createElement('div');
+    actions.className = 'quiz-actions';
+    actions.append(this.review, this.next);
+    this.card.append(this.title, this.details, this.question, this.options, this.feedback, this.hearts, actions);
     scene.game.canvas.parentElement.append(this.card);
     scene.events.once('shutdown', () => this.card.remove());
 
@@ -73,6 +80,7 @@ export default class Quiz {
     this.open({ ...memory, question: 'Ảnh kỷ niệm đã được mở khóa.', options: [] });
     this.revealMemory(memory);
     this.options.hidden = true;
+    this.review.hidden = false;
     this.showAction('Tiếp tục hành trình ❤️', this.onContinue);
   }
 
@@ -100,6 +108,7 @@ export default class Quiz {
     this.question.hidden = false;
     this.feedback.textContent = '';
     this.hearts.hidden = true;
+    this.review.hidden = true;
     this.next.hidden = true;
     this.action = null;
     this.options.hidden = false;
@@ -146,6 +155,7 @@ export default class Quiz {
 
   setPaused(paused) {
     this.paused = paused;
+    this.review.disabled = paused;
     this.next.disabled = paused;
     for (const button of this.options.children) button.disabled = paused || this.locked;
   }
