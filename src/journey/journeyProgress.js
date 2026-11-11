@@ -6,8 +6,10 @@ export function readJourneyProgress(memories) {
     if (!saved || !Array.isArray(saved.unlockedIds)) return null;
     const firstLocked = memories.findIndex((memory, index) => saved.unlockedIds[index] !== memory.id);
     const completed = firstLocked < 0 ? memories.length : firstLocked;
-    const index = memories.findIndex(({ id }) => id === saved.checkpointId);
-    if (index < 0 || index > completed || index < completed - 1) return null;
+    const savedIndex = memories.findIndex(({ id }) => id === saved.checkpointId);
+    if (savedIndex < 0 || savedIndex < completed - 1) return null;
+    // A newly inserted checkpoint becomes the first stop after the unlocked prefix.
+    const index = Math.min(savedIndex, completed);
     const finale = completed === memories.length && ['open', 'complete'].includes(saved.finale) ? saved.finale : null;
     return { index, completed, finale, endingViewed: finale === 'complete' && saved.endingViewed === true };
   } catch {

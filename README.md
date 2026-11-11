@@ -42,9 +42,9 @@ Thế giới rộng 2.160 pixel, với mặt đường liên tục và các vậ
 
 ## Kiểm tra Love Journey & Quiz Checkpoints (Phase 4)
 
-1. Chọn **Cùng lên xe** và đi hết hai lượt hội thoại. Khi xe khởi hành, thanh **Love Timeline** hiện `0/7`.
-2. Chờ xe dừng ở từng mốc **Tà Xùa → Huế → Đi vẽ cốc → Ngày tỏ tình → Sài Gòn → Đà Nẵng → Hiện tại**. Thử trả lời sai để kiểm tra xe vẫn đứng yên và có thể chọn lại. Trả lời đúng để mở mini-interaction của mốc.
-3. Sau khi mở ảnh ở **Hiện tại**, kiểm tra số năm/tháng bên nhau và tiến độ `7/7`. Nhấn **Tiếp tục hành trình ❤️** để mở **To Be Continued...**. Cả ba lựa chọn đều dẫn vào cảnh kết Phase 6.
+1. Chọn **Cùng lên xe** và đi hết hai lượt hội thoại. Khi xe khởi hành, thanh **Love Timeline** hiện `0/9`.
+2. Chờ xe dừng ở từng mốc **Tà Xùa → Huế → Đi vẽ cốc → Sinh nhật đầu tiên bên em → Ngày tỏ tình → Sài Gòn → Đón năm mới đầu tiên bên em → Đà Nẵng → Hiện tại**. Thử trả lời sai để kiểm tra xe vẫn đứng yên và có thể chọn lại. Trả lời đúng để mở mini-interaction của mốc.
+3. Sau khi mở ảnh ở **Hiện tại**, kiểm tra số năm/tháng bên nhau và tiến độ `9/9`. Nhấn **Tiếp tục hành trình ❤️** để mở **To Be Continued...**. Cả ba lựa chọn đều dẫn vào cảnh kết Phase 6.
 4. Thử **Pause / Resume** khi xe đang chạy, khi quiz đang mở hoặc khi đang chơi mini-interaction. **Restart** xóa tiến độ ảnh đã lưu và chơi lại từ đầu.
 
 Sửa tên mốc, địa điểm, câu hỏi, đáp án và chương cuối trong `src/data/memories.js`. Giữ `id` của mỗi mốc duy nhất, cung cấp 2–4 đáp án và đặt `correctAnswerId` trùng với `id` của đáp án đúng. Dùng `YYYY-MM-DD` cho ngày đã biết, hoặc `null` khi chưa có ngày hay địa điểm. Đặt `worldPosition` tăng dần trong khoảng từ sau vị trí xuất phát `251` đến `2105`. Mốc **Hiện tại** tính số tháng tròn theo ngày trên thiết bị, bắt đầu từ `2025-08-02`.
@@ -52,25 +52,25 @@ Sửa tên mốc, địa điểm, câu hỏi, đáp án và chương cuối tron
 ## Kiểm tra mở khóa ảnh (Phase 5)
 
 1. Trả lời đúng và chọn **Mở kỷ niệm ❤️**. Tiến độ vẫn giữ nguyên cho đến khi ảnh xuất hiện đầy đủ.
-2. Lần lượt chạm hộp `?`, mở rương, chạm ba màu, mở thư, thu ba trái tim, ghép ba mảnh, rồi mở album. Các tương tác ba bước chấp nhận mọi thứ tự và mỗi nút chỉ tính một lần.
-3. Ở mốc **Hiện tại**, bấm **Ảnh tiếp theo** qua sáu ảnh đã mở khóa. Ảnh thứ bảy là ảnh của mốc hiện tại. Đóng Polaroid bằng **Đóng ảnh** hoặc Escape, rồi chọn **Tiếp tục hành trình ❤️**.
+2. Làm theo hướng dẫn tại mỗi mốc để mở ảnh. Các tương tác ba bước chấp nhận mọi thứ tự và mỗi nút chỉ tính một lần.
+3. Ở mốc **Hiện tại**, bấm **Ảnh tiếp theo** qua tám ảnh đã mở khóa. Ảnh thứ chín là ảnh của mốc hiện tại. Đóng Polaroid bằng **Đóng ảnh** hoặc Escape, rồi chọn **Tiếp tục hành trình ❤️**.
 4. Refresh giữa quiz hoặc tương tác để trở lại quiz của mốc đang dừng. Refresh sau khi ảnh hiện đầy đủ để trở lại điểm dừng đã hoàn thành. Refresh giữa lúc chạy khôi phục điểm dừng đã lưu gần nhất. Tiến độ lưu trong `localStorage` của trình duyệt hiện tại.
 
 Để thêm ảnh thật, chép ảnh vào `public/assets/photos/` và điền tên file trong `image`, ví dụ `image: 'ta-xua.webp'`, ở mốc tương ứng trong `src/data/memories.js`. Sửa `description`, `date` và `location` ngay trong cùng mục. Tên file phân biệt hoa thường trên GitHub Pages. Khi thiếu ảnh hoặc tải lỗi, game dùng hình minh họa gốc có nhãn **Ảnh minh họa**. Hãy dùng ảnh bạn sở hữu hoặc được phép sử dụng.
 
 ## Kiểm tra cảnh kết Phase 6
 
-1. Mở đủ bảy ảnh, đóng ảnh cuối và đi qua **To Be Continued...** để tới đồi hoa mai. Quan sát xe leo dốc, trời tối dần và hai nhân vật lần lượt xuống xe, đi tới gốc mai.
+1. Mở đủ chín ảnh, đóng ảnh cuối và đi qua **To Be Continued...** để tới đồi hoa mai. Quan sát xe leo dốc, trời tối dần và hai nhân vật lần lượt xuống xe, đi tới gốc mai.
 2. Đọc hai lượt hội thoại. Chọn **Chạm để hoa mai nở 🌼** rồi quan sát chồi, hoa vàng, cánh hoa, trái tim, camera lùi nhẹ và sao băng. Hai dòng lời nhắn xuất hiện lần lượt trước khi nút đi tiếp hiện ra.
 3. Chọn **Tiếp tục chuyến đi của chúng mình ❤️**. Hai nhân vật quay lại xe, chạy về phía xa và màn hình tối dần.
-4. Dùng **Xem lại kỷ niệm** để lật lại bảy ảnh. **Về trang chủ** giữ tiến độ. Khi vào lại cảnh kết sau khi đã xem xong, có thể chọn **Bỏ qua cảnh đã xem**. **Chơi lại từ đầu** chỉ xóa tiến độ sau khi xác nhận.
+4. Dùng **Xem lại kỷ niệm** để lật lại chín ảnh. **Về trang chủ** giữ tiến độ. Khi vào lại cảnh kết sau khi đã xem xong, có thể chọn **Bỏ qua cảnh đã xem**. **Chơi lại từ đầu** chỉ xóa tiến độ sau khi xác nhận.
 
 Cảnh kết dùng cùng tiến độ `localStorage` với Phase 5. Nếu refresh khi chưa xem xong cảnh kết, cảnh bắt đầu lại từ lúc xe lên đồi.
 
 ## Chỉnh nội dung và kiểm tra bản build
 
 - Sửa tên hai người trong `src/data/couple.js`. Sửa câu hỏi, đáp án, ngày tháng, lời nhắn Polaroid và lựa chọn **To Be Continued...** trong `src/data/memories.js`. Lời thoại trên đồi nằm trong `src/scenes/EndingScene.js` và lời kết trong `src/ui/EndingUI.js`.
-- Khi kiểm tra `npm run preview`, thử màn hình dọc/ngang, ảnh thật dọc và ngang, âm lượng, Pause/Resume, chuyển tab và refresh trước/sau mở ảnh. Sau khi đi đủ bảy checkpoint, xem cảnh kết, mở lại album và kiểm tra cả hai lựa chọn xác nhận chơi lại.
+- Khi kiểm tra `npm run preview`, thử màn hình dọc/ngang, ảnh thật dọc và ngang, âm lượng, Pause/Resume, chuyển tab và refresh trước/sau mở ảnh. Sau khi đi đủ chín checkpoint, xem cảnh kết, mở lại album và kiểm tra cả hai lựa chọn xác nhận chơi lại.
 
 ## Cấu trúc dự án
 
